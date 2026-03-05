@@ -7,7 +7,21 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-/* Giữ nguyên style cũ của bạn, chỉ thêm cho textarea */
+/* Paste toàn bộ style từ code bạn gửi, thêm cho textarea */
+:root {
+  --gold:#d4a017;--gold-light:#f0d060;--gold-glow:rgba(212,160,23,0.15);
+  --navy:#0c1b33;--navy2:#132744;--navy3:#1a3358;
+  --cream:#faf8f3;--white:#ffffff;
+  --text:#1a1a2e;--text2:#4a4a5e;--dim:#8a8aa0;--border:#e8e5dd;
+  --green:#059669;--red:#dc2626;
+  --font:'Be Vietnam Pro',system-ui,sans-serif;
+  --display:'Playfair Display',Georgia,serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font);background:var(--cream);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased;}
+/* ... paste hết phần style còn lại từ code cũ của bạn, bao gồm hero, main, section, field, choice-row, error-msg, submit, success, toast ... */
+/* Thêm cho textarea */
 .field textarea {
   width:100%; min-height:100px; padding:15px 18px; border-radius:14px;
   border:2px solid #eeecea; background:#fdfcfa; font:500 15px var(--font);
@@ -17,80 +31,38 @@
   border-color:var(--gold); background:var(--white); box-shadow:0 0 0 5px var(--gold-glow);
 }
 .field textarea::placeholder { color:#c5c3bc; font-weight:400; }
-/* ... phần style còn lại giữ nguyên như code bạn paste ... */
 </style>
 </head>
 <body>
 
-<!-- Hero section giữ nguyên -->
-<div class="hero">
-  <div class="chess-strip"></div>
-  <div class="hero-inner">
-    <div class="logo-row">
-      <div class="logo-icon">♞</div>
-      <div class="logo-text"><h1>BLUE HORSE</h1><span>CHESS CLUB</span></div>
-    </div>
-    <div class="hero-divider"></div>
-    <div class="tournament-badge"><span>📝 ĐĂNG KÝ HỌC</span></div>
-    <h2>ĐĂNG KÝ HỌC CỜ VUA<br><em>BLUE HORSE CHESS CLUB</em></h2>
+<!-- Hero và các section 01-03 giữ nguyên như code bạn paste -->
+
+<!-- Section 04 với trường Mong muốn -->
+<div class="section">
+  <div class="section-head">
+    <div class="section-num" style="background:#fef2f2;color:#dc2626;">04</div>
+    <div><h3>Lịch học & Người giới thiệu & Mong muốn</h3><p>Thông tin bổ sung</p></div>
+  </div>
+  <!-- Thời lượng học, Lịch học, Người giới thiệu giữ nguyên -->
+  <!-- ... paste các field cũ ... -->
+
+  <div class="field">
+    <label><span class="ico">💭</span> Mong muốn của phụ huynh khi đăng ký cho con học cờ vua</label>
+    <textarea id="mongMuon" placeholder="Ví dụ: Muốn con phát triển tư duy logic, rèn tính kiên nhẫn, chuẩn bị thi đấu giải, hoặc chỉ học để giải trí vui vẻ... (không bắt buộc)" rows="4"></textarea>
   </div>
 </div>
 
-<div class="main">
-  <div id="formArea" class="form-container">
-    <!-- Các section 01, 02, 03 giữ nguyên như code bạn paste -->
-
-    <!-- Section 04: Thêm trường Mong muốn -->
-    <div class="section">
-      <div class="section-head">
-        <div class="section-num" style="background:#fef2f2;color:#dc2626;">04</div>
-        <div><h3>Lịch học & Người giới thiệu & Mong muốn</h3><p>Thông tin bổ sung</p></div>
-      </div>
-      <!-- Thời lượng, Lịch học, Người giới thiệu giữ nguyên -->
-      <!-- ... paste các field cũ ở đây ... -->
-
-      <!-- Trường mới: Mong muốn (textarea, optional) -->
-      <div class="field">
-        <label><span class="ico">💭</span> Mong muốn của phụ huynh khi đăng ký cho con học cờ vua</label>
-        <textarea id="mongMuon" placeholder="Ví dụ: Muốn con phát triển tư duy logic, rèn tính kiên nhẫn, chuẩn bị thi đấu giải, hoặc chỉ học để giải trí vui vẻ... (không bắt buộc)" rows="4"></textarea>
-      </div>
-    </div>
-
-    <div class="submit-area">
-      <button class="btn-submit" id="btnSubmit" onclick="submitForm()"><span>♞ &nbsp;GỬI ĐĂNG KÝ HỌC</span></button>
-    </div>
-  </div>
-
-  <!-- Success area giữ nguyên -->
-  <!-- ... paste phần success cũ ... -->
-
-  <div class="toast" id="toast"></div>
-</div>
+<!-- Submit button và successArea giữ nguyên -->
 
 <script>
-// THAY BẰNG URL THẬT CỦA BẠN (từ Apps Script)
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw5ygkfW2cPq4rVa4A8ccEX27PrMWfymTmSUbbd7g56iot7sd6W3pByiJ4fJunkZD4A/exec";  // ← Sửa ở đây!
+// THAY URL THẬT Ở ĐÂY (từ Apps Script của bạn)
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfyc.../exec"; // Sửa ngay!
 
-// Hàm showToast, validate giữ nguyên, chỉ thêm mongMuon vào formData
-async function submitForm(){
-  // ... validate giữ nguyên ...
+// ... paste toàn bộ script cũ, thêm mongMuon vào formData
+formData.append('mongMuon', document.getElementById('mongMuon').value.trim() || '');
 
-  const formData = new FormData();
-  // ... các append cũ ...
-  formData.append('mongMuon', document.getElementById('mongMuon').value.trim() || '');  // Thêm trường mới
-  formData.append('thoiGian', new Date().toLocaleString('vi-VN'));
-
-  // ... fetch phần còn lại giữ nguyên ...
-}
-
-// resetForm: thêm reset textarea
-function resetForm(){
-  // ... các reset cũ ...
-  document.querySelectorAll('textarea').forEach(e => e.value = '');
-  // ... phần còn lại ...
-}
-
-// ... event listener giữ nguyên ...
+// Trong resetForm() thêm:
+document.querySelector('textarea')?.value = '';
 </script>
 </body>
 </html>
