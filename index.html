@@ -7,7 +7,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-/* Paste toàn bộ style từ code bạn gửi, thêm cho textarea */
+/* ============================================================
+   ★ BLUE HORSE CHESS CLUB — FORM ĐĂNG KÝ HỌC
+   ★ Premium Edition (dựa trên form giải đấu)
+   ============================================================ */
 :root {
   --gold:#d4a017;--gold-light:#f0d060;--gold-glow:rgba(212,160,23,0.15);
   --navy:#0c1b33;--navy2:#132744;--navy3:#1a3358;
@@ -20,49 +23,343 @@
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 body{font-family:var(--font);background:var(--cream);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased;}
-/* ... paste hết phần style còn lại từ code cũ của bạn, bao gồm hero, main, section, field, choice-row, error-msg, submit, success, toast ... */
-/* Thêm cho textarea */
-.field textarea {
-  width:100%; min-height:100px; padding:15px 18px; border-radius:14px;
-  border:2px solid #eeecea; background:#fdfcfa; font:500 15px var(--font);
-  color:var(--text); outline:none; resize:vertical; transition:all .25s;
-}
-.field textarea:focus {
-  border-color:var(--gold); background:var(--white); box-shadow:0 0 0 5px var(--gold-glow);
-}
-.field textarea::placeholder { color:#c5c3bc; font-weight:400; }
+
+/* HERO */
+.hero{background:var(--navy);position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(212,160,23,0.08) 0%,transparent 70%),radial-gradient(circle at 20% 80%,rgba(37,99,235,0.06) 0%,transparent 50%);}
+.hero::after{content:'♞';position:absolute;font-size:280px;color:rgba(255,255,255,0.015);top:-40px;right:-40px;line-height:1;transform:rotate(-15deg);}
+.chess-strip{height:6px;background:linear-gradient(90deg,var(--gold),var(--gold-light),var(--gold));}
+.hero-inner{max-width:560px;margin:0 auto;padding:36px 24px 32px;position:relative;z-index:1;text-align:center;}
+.logo-row{display:inline-flex;align-items:center;gap:14px;margin-bottom:24px;}
+.logo-icon{width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,var(--gold),var(--gold-light));display:flex;align-items:center;justify-content:center;font-size:28px;box-shadow:0 4px 20px rgba(212,160,23,0.25),inset 0 1px 0 rgba(255,255,255,0.3);}
+.logo-text{text-align:left;}
+.logo-text h1{font:800 16px var(--font);color:#fff;letter-spacing:2px;}
+.logo-text span{font-size:10px;color:rgba(255,255,255,0.4);font-weight:500;letter-spacing:1px;}
+.hero-divider{width:50px;height:1px;margin:0 auto 20px;background:linear-gradient(90deg,transparent,var(--gold),transparent);}
+.tournament-badge{display:inline-block;padding:5px 16px;background:rgba(212,160,23,0.1);border:1px solid rgba(212,160,23,0.2);border-radius:100px;margin-bottom:16px;}
+.tournament-badge span{font:700 10px var(--font);color:var(--gold);letter-spacing:2px;text-transform:uppercase;}
+.hero h2{font:800 22px/1.35 var(--display);color:#fff;margin-bottom:10px;letter-spacing:0.3px;}
+.hero h2 em{font-style:normal;color:var(--gold-light);}
+
+/* MAIN */
+.main{max-width:560px;margin:0 auto;padding:0 16px 40px;position:relative;}
+.form-container{margin-top:-16px;position:relative;z-index:2;}
+.steps{display:flex;justify-content:center;gap:6px;padding:20px 0 8px;}
+.step-dot{width:8px;height:8px;border-radius:50%;background:var(--border);transition:all .3s;}
+.step-dot.active{background:var(--gold);width:24px;border-radius:4px;}
+
+/* Section */
+.section{background:var(--white);border-radius:24px;padding:28px 24px;margin-bottom:12px;box-shadow:0 1px 3px rgba(0,0,0,0.04),0 8px 32px rgba(0,0,0,0.03);border:1px solid rgba(0,0,0,0.04);animation:slideUp .5s ease both;}
+.section:nth-child(2){animation-delay:.06s;}
+.section:nth-child(3){animation-delay:.12s;}
+.section:nth-child(4){animation-delay:.18s;}
+@keyframes slideUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.section-head{display:flex;align-items:center;gap:14px;margin-bottom:24px;}
+.section-num{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font:800 15px var(--font);flex-shrink:0;}
+.section-head h3{font:700 16px var(--font);color:var(--text);}
+.section-head p{font:400 12px var(--font);color:var(--dim);margin-top:2px;}
+
+/* Fields */
+.field{margin-bottom:20px;}.field:last-child{margin-bottom:0;}
+.field label{display:flex;align-items:center;gap:6px;font:600 13px var(--font);color:var(--text);margin-bottom:8px;}
+.field label .ico{font-size:15px;}.req{color:var(--red);font-size:11px;}
+.field input,.field select,.field textarea{width:100%;padding:15px 18px;border-radius:14px;border:2px solid #eeecea;background:#fdfcfa;font:500 15px var(--font);color:var(--text);outline:none;transition:all .25s;}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--gold);background:var(--white);box-shadow:0 0 0 5px var(--gold-glow);}
+.field input::placeholder,.field textarea::placeholder{color:#c5c3bc;font-weight:400;}
+.field select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6' fill='%23b0aea6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 18px center;padding-right:44px;cursor:pointer;}
+.field textarea{min-height:100px;resize:vertical;}
+
+/* Choice cards */
+.choice-row{display:flex;gap:10px;flex-wrap:wrap;}
+.choice-card{flex:1 1 45%;position:relative;cursor:pointer;min-width:140px;}
+.choice-card input{display:none;}
+.choice-card .card-face{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:16px 10px;border-radius:16px;border:2px solid #eeecea;background:#fdfcfa;transition:all .25s;text-align:center;}
+.choice-card input:checked+.card-face{border-color:var(--gold);background:linear-gradient(135deg,#fffdf5,#fef9e7);box-shadow:0 0 0 5px var(--gold-glow);}
+.choice-card .card-face .emoji{font-size:24px;line-height:1;}
+.choice-card .card-face .txt{font:600 13px var(--font);color:var(--text2);}
+.choice-card input:checked+.card-face .txt{color:var(--gold);font-weight:700;}
+
+/* Errors & Submit */
+.field-error{border-color:var(--red)!important;}
+.error-msg{font:500 11px var(--font);color:var(--red);margin-top:6px;display:none;padding-left:2px;}
+.submit-area{padding:8px 0 0;animation:slideUp .5s ease both;animation-delay:.24s;}
+.btn-submit{width:100%;padding:18px;border:none;border-radius:16px;background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;font:700 16px var(--font);cursor:pointer;transition:all .25s;letter-spacing:.5px;box-shadow:0 4px 24px rgba(12,27,51,0.2);}
+.btn-submit:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(12,27,51,0.3);}
+.btn-submit:disabled{opacity:.5;cursor:wait;}
+
+/* Success */
+.success-wrap{margin-top:-16px;position:relative;z-index:2;animation:slideUp .5s ease both;}
+.success-card{background:var(--white);border-radius:24px;padding:48px 28px;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,0.04),0 8px 32px rgba(0,0,0,0.03);border:1px solid rgba(0,0,0,0.04);}
+.success-check{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,#ecfdf5,#d1fae5);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:36px;box-shadow:0 4px 20px rgba(5,150,105,0.1);}
+.success-card h3{font:800 22px var(--display);color:var(--green);margin-bottom:10px;}
+.success-card p{font:400 14px/1.7 var(--font);color:var(--text2);max-width:340px;margin:0 auto;}
+.btn-again{display:inline-flex;align-items:center;gap:8px;margin-top:24px;padding:14px 32px;border-radius:14px;background:var(--cream);border:2px solid var(--border);font:600 14px var(--font);color:var(--text);cursor:pointer;transition:all .2s;}
+.btn-again:hover{border-color:var(--gold);background:#fffef8;}
+
+/* Toast */
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(120px);padding:14px 28px;border-radius:14px;font:600 14px var(--font);z-index:200;box-shadow:0 8px 32px rgba(0,0,0,0.15);transition:transform .4s cubic-bezier(0.34,1.56,0.64,1);}
+.toast.show{transform:translateX(-50%) translateY(0);}
+.toast.sending{background:var(--navy);color:#fff;}
+.toast.ok{background:var(--green);color:#fff;}
+.toast.err{background:var(--red);color:#fff;}
+.hidden{display:none!important;}
 </style>
 </head>
 <body>
 
-<!-- Hero và các section 01-03 giữ nguyên như code bạn paste -->
-
-<!-- Section 04 với trường Mong muốn -->
-<div class="section">
-  <div class="section-head">
-    <div class="section-num" style="background:#fef2f2;color:#dc2626;">04</div>
-    <div><h3>Lịch học & Người giới thiệu & Mong muốn</h3><p>Thông tin bổ sung</p></div>
-  </div>
-  <!-- Thời lượng học, Lịch học, Người giới thiệu giữ nguyên -->
-  <!-- ... paste các field cũ ... -->
-
-  <div class="field">
-    <label><span class="ico">💭</span> Mong muốn của phụ huynh khi đăng ký cho con học cờ vua</label>
-    <textarea id="mongMuon" placeholder="Ví dụ: Muốn con phát triển tư duy logic, rèn tính kiên nhẫn, chuẩn bị thi đấu giải, hoặc chỉ học để giải trí vui vẻ... (không bắt buộc)" rows="4"></textarea>
+<div class="hero">
+  <div class="chess-strip"></div>
+  <div class="hero-inner">
+    <div class="logo-row">
+      <div class="logo-icon">♞</div>
+      <div class="logo-text"><h1>BLUE HORSE</h1><span>CHESS CLUB</span></div>
+    </div>
+    <div class="hero-divider"></div>
+    <div class="tournament-badge"><span>📝 ĐĂNG KÝ HỌC</span></div>
+    <h2>ĐĂNG KÝ HỌC CỜ VUA<br><em>BLUE HORSE CHESS CLUB</em></h2>
   </div>
 </div>
 
-<!-- Submit button và successArea giữ nguyên -->
+<div class="main">
+  <div id="formArea" class="form-container">
+    <div class="steps">
+      <div class="step-dot active"></div><div class="step-dot"></div><div class="step-dot"></div><div class="step-dot"></div>
+    </div>
+
+    <!-- 1. Thông tin học viên -->
+    <div class="section">
+      <div class="section-head">
+        <div class="section-num" style="background:#eef1ff;color:#4a5ebd;">01</div>
+        <div><h3>Thông tin học viên</h3><p>Điền thông tin cơ bản của bé</p></div>
+      </div>
+      <div class="field">
+        <label><span class="ico">✏️</span> Họ và tên <span class="req">*</span></label>
+        <input type="text" id="hoTen" placeholder="Nhập đầy đủ họ và tên" required>
+        <div class="error-msg" id="err-hoTen">Vui lòng nhập họ tên</div>
+      </div>
+      <div class="field">
+        <label><span class="ico">📅</span> Ngày tháng năm sinh <span class="req">*</span></label>
+        <input type="date" id="ngaySinh" required>
+        <div class="error-msg" id="err-ngaySinh">Vui lòng chọn ngày sinh</div>
+      </div>
+      <div class="field">
+        <label><span class="ico">👤</span> Giới tính <span class="req">*</span></label>
+        <div class="choice-row">
+          <label class="choice-card"><input type="radio" name="gioiTinh" value="Nam"><div class="card-face"><span class="emoji">👦</span><span class="txt">Nam</span></div></label>
+          <label class="choice-card"><input type="radio" name="gioiTinh" value="Nữ"><div class="card-face"><span class="emoji">👧</span><span class="txt">Nữ</span></div></label>
+        </div>
+        <div class="error-msg" id="err-gioiTinh">Vui lòng chọn giới tính</div>
+      </div>
+    </div>
+
+    <!-- 2. Thông tin phụ huynh -->
+    <div class="section">
+      <div class="section-head">
+        <div class="section-num" style="background:#fef3e2;color:#c8870e;">02</div>
+        <div><h3>Thông tin phụ huynh</h3><p>Để CLB liên hệ tư vấn và xác nhận</p></div>
+      </div>
+      <div class="field">
+        <label><span class="ico">👨‍👩‍👧</span> Họ tên bố mẹ <span class="req">*</span></label>
+        <input type="text" id="phuHuynh" placeholder="Ví dụ: Nguyễn Văn A & Trần Thị B" required>
+        <div class="error-msg" id="err-phuHuynh">Vui lòng nhập họ tên phụ huynh</div>
+      </div>
+      <div class="field">
+        <label><span class="ico">📱</span> SĐT / Zalo <span class="req">*</span></label>
+        <input type="tel" id="sdt" placeholder="Nhập số điện thoại / Zalo" required>
+        <div class="error-msg" id="err-sdt">Vui lòng nhập số điện thoại</div>
+      </div>
+    </div>
+
+    <!-- 3. Trình độ & Chương trình học -->
+    <div class="section">
+      <div class="section-head">
+        <div class="section-num" style="background:#ecfdf5;color:#059669;">03</div>
+        <div><h3>Trình độ & Chương trình học</h3><p>Chọn mức phù hợp với bé</p></div>
+      </div>
+      <div class="field">
+        <label><span class="ico">♟️</span> Trình độ hiện tại của bé <span class="req">*</span></label>
+        <select id="trinhDo" required>
+          <option value="">— Chọn trình độ —</option>
+          <option>Chưa biết chơi</option>
+          <option>Mới biết mặt quân và nước đi</option>
+          <option>Đã biết chơi</option>
+          <option>Đã đi thi đấu</option>
+        </select>
+        <div class="error-msg" id="err-trinhDo">Vui lòng chọn trình độ</div>
+      </div>
+      <div class="field">
+        <label><span class="ico">📚</span> Đăng ký chương trình học <span class="req">*</span></label>
+        <select id="chuongTrinh" required>
+          <option value="">— Chọn chương trình —</option>
+          <option>Nhập môn</option>
+          <option>Cơ bản A</option>
+          <option>Cơ bản B</option>
+          <option>Nâng cao A</option>
+          <option>Nâng cao B</option>
+          <option>Chuyên sâu A</option>
+          <option>Chuyên sâu B</option>
+          <option>Chuyên sâu +</option>
+          <option>Tài năng cờ vua</option>
+        </select>
+        <div class="error-msg" id="err-chuongTrinh">Vui lòng chọn chương trình học</div>
+      </div>
+    </div>
+
+    <!-- 4. Lịch học, Giới thiệu & Mong muốn -->
+    <div class="section">
+      <div class="section-head">
+        <div class="section-num" style="background:#fef2f2;color:#dc2626;">04</div>
+        <div><h3>Lịch học & Người giới thiệu & Mong muốn</h3><p>Thông tin bổ sung</p></div>
+      </div>
+      <div class="field">
+        <label><span class="ico">🗓️</span> Thời lượng học mỗi tuần <span class="req">*</span></label>
+        <div class="choice-row">
+          <label class="choice-card"><input type="radio" name="thoiLuong" value="2 buổi/tuần"><div class="card-face"><span class="emoji">🕒</span><span class="txt">2 buổi/tuần</span></div></label>
+          <label class="choice-card"><input type="radio" name="thoiLuong" value="3 buổi/tuần"><div class="card-face"><span class="emoji">🕒🕒</span><span class="txt">3 buổi/tuần</span></div></label>
+        </div>
+        <div class="error-msg" id="err-thoiLuong">Vui lòng chọn thời lượng</div>
+      </div>
+      <div class="field">
+        <label><span class="ico">📅</span> Lịch học mong muốn <span class="req">*</span></label>
+        <select id="lichHoc" required>
+          <option value="">— Chọn lịch học —</option>
+          <option>T2, T6</option>
+          <option>T3, T5</option>
+          <option>T4, T7</option>
+          <option>T7, CN</option>
+          <option>T2, T4, T6</option>
+          <option>T3, T5, T7</option>
+          <option>Cần tư vấn</option>
+        </select>
+        <div class="error-msg" id="err-lichHoc">Vui lòng chọn lịch học</div>
+      </div>
+      <div class="field">
+        <label><span class="ico">🤝</span> Người giới thiệu <span class="req">*</span></label>
+        <select id="gioiThieu" required>
+          <option value="">— Chọn nguồn giới thiệu —</option>
+          <option>Có PHHS giới thiệu</option>
+          <option>Facebook</option>
+          <option>Zalo</option>
+          <option>Khác</option>
+        </select>
+        <div class="error-msg" id="err-gioiThieu">Vui lòng chọn nguồn giới thiệu</div>
+      </div>
+      <div class="field">
+        <label><span class="ico">💭</span> Mong muốn của phụ huynh khi đăng ký cho con học cờ vua</label>
+        <textarea id="mongMuon" placeholder="Ví dụ: Muốn con phát triển tư duy logic, rèn tính kiên nhẫn, chuẩn bị thi đấu giải, hoặc chỉ học để giải trí vui vẻ... (không bắt buộc)" rows="4"></textarea>
+      </div>
+    </div>
+
+    <div class="submit-area">
+      <button class="btn-submit" id="btnSubmit" onclick="submitForm()"><span>♞ &nbsp;GỬI ĐĂNG KÝ HỌC</span></button>
+    </div>
+  </div>
+
+  <div id="successArea" class="hidden">
+    <div class="success-wrap">
+      <div class="success-card">
+        <div class="success-check">✓</div>
+        <h3>Đăng ký học thành công!</h3>
+        <p>Cảm ơn quý phụ huynh đã đăng ký cho bé tham gia học cờ vua tại Blue Horse.<br>CLB sẽ liên hệ tư vấn chi tiết và xác nhận lịch học qua SĐT / Zalo trong vòng 24-48h.</p>
+        <button class="btn-again" onclick="resetForm()">📝 Đăng ký thêm học viên</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+</div>
 
 <script>
-// THAY URL THẬT Ở ĐÂY (từ Apps Script của bạn)
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfyc.../exec"; // Sửa ngay!
+// THAY URL THẬT CỦA BẠN (từ Google Apps Script)
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw26c6F4xsLVI71XwEj_dmgMjeN-B69UHGvPU_OEJiPSOk4EiR82tLbxo69zoKkW_Bipw/exec";
 
-// ... paste toàn bộ script cũ, thêm mongMuon vào formData
-formData.append('mongMuon', document.getElementById('mongMuon').value.trim() || '');
+function showToast(t,m){const e=document.getElementById('toast');e.className='toast '+t+' show';e.textContent=m;if(t!=='sending')setTimeout(()=>e.classList.remove('show'),4000);}
 
-// Trong resetForm() thêm:
-document.querySelector('textarea')?.value = '';
+function validate(){
+  let ok=true;
+  const fields = [
+    {id:'hoTen', err:'err-hoTen', ck:v=>v.trim().length>=2},
+    {id:'ngaySinh', err:'err-ngaySinh', ck:v=>v!==''},
+    {id:'phuHuynh', err:'err-phuHuynh', ck:v=>v.trim().length>=2},
+    {id:'sdt', err:'err-sdt', ck:v=>v.trim().length>=9},
+    {id:'trinhDo', err:'err-trinhDo', ck:v=>v!==''},
+    {id:'chuongTrinh', err:'err-chuongTrinh', ck:v=>v!==''},
+    {id:'thoiLuong', err:'err-thoiLuong', ck:()=>document.querySelector('input[name="thoiLuong"]:checked')},
+    {id:'lichHoc', err:'err-lichHoc', ck:v=>v!==''},
+    {id:'gioiThieu', err:'err-gioiThieu', ck:v=>v!==''}
+  ];
+  fields.forEach(c=>{
+    const el=document.getElementById(c.id);
+    const er=document.getElementById(c.err);
+    let valid = typeof c.ck === 'function' ? c.ck(el?.value || '') : c.ck();
+    if(!valid){
+      if(el) el.classList.add('field-error');
+      if(er) er.style.display='block';
+      ok=false;
+    }else{
+      if(el) el.classList.remove('field-error');
+      if(er) er.style.display='none';
+    }
+  });
+  if(!document.querySelector('input[name="gioiTinh"]:checked')){
+    document.getElementById('err-gioiTinh').style.display='block';
+    ok=false;
+  }else{
+    document.getElementById('err-gioiTinh').style.display='none';
+  }
+  return ok;
+}
+
+async function submitForm(){
+  if(!validate()){showToast('err','⚠️ Vui lòng điền đầy đủ thông tin bắt buộc');const f=document.querySelector('.field-error');if(f)f.scrollIntoView({behavior:'smooth',block:'center'});return;}
+  const btn=document.getElementById('btnSubmit');btn.disabled=true;btn.querySelector('span').textContent='⏳ Đang gửi...';showToast('sending','⏳ Đang gửi đăng ký...');
+
+  const formData = new FormData();
+  formData.append('hoTen', document.getElementById('hoTen').value.trim());
+  formData.append('ngaySinh', document.getElementById('ngaySinh').value);
+  formData.append('gioiTinh', document.querySelector('input[name="gioiTinh"]:checked')?.value || '');
+  formData.append('phuHuynh', document.getElementById('phuHuynh').value.trim());
+  formData.append('sdt', document.getElementById('sdt').value.trim());
+  formData.append('trinhDo', document.getElementById('trinhDo').value);
+  formData.append('chuongTrinh', document.getElementById('chuongTrinh').value);
+  formData.append('thoiLuong', document.querySelector('input[name="thoiLuong"]:checked')?.value || '');
+  formData.append('lichHoc', document.getElementById('lichHoc').value);
+  formData.append('gioiThieu', document.getElementById('gioiThieu').value);
+  formData.append('mongMuon', document.getElementById('mongMuon').value.trim() || '');
+  formData.append('thoiGian', new Date().toLocaleString('vi-VN'));
+
+  try{
+    await fetch(GOOGLE_SCRIPT_URL, {method:'POST',mode:'no-cors',body:formData});
+    showToast('ok','✅ Đăng ký thành công!');
+    document.getElementById('formArea').classList.add('hidden');
+    document.getElementById('successArea').classList.remove('hidden');
+    window.scrollTo({top:0,behavior:'smooth'});
+  }catch(e){
+    showToast('err','❌ Gửi thất bại. Vui lòng thử lại.');
+    console.error(e);
+  }finally{
+    btn.disabled=false;
+    btn.querySelector('span').textContent='♞  GỬI ĐĂNG KÝ HỌC';
+  }
+}
+
+function resetForm(){
+  document.getElementById('formArea').classList.remove('hidden');
+  document.getElementById('successArea').classList.add('hidden');
+  document.querySelectorAll('input,select,textarea').forEach(e=>{
+    if(e.type==='radio') e.checked=false;
+    else if(e.tagName==='SELECT') e.selectedIndex=0;
+    else e.value='';
+  });
+  document.querySelectorAll('.field-error').forEach(e=>e.classList.remove('field-error'));
+  document.querySelectorAll('.error-msg').forEach(e=>e.style.display='none');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+document.querySelectorAll('input,select,textarea').forEach(el=>{
+  el.addEventListener('input',()=>{el.classList.remove('field-error');const e=el.closest('.field')?.querySelector('.error-msg');if(e)e.style.display='none';});
+  el.addEventListener('change',()=>{el.classList.remove('field-error');const e=el.closest('.field')?.querySelector('.error-msg');if(e)e.style.display='none';});
+});
 </script>
 </body>
 </html>
