@@ -183,10 +183,13 @@ body{font-family:var(--font);background:var(--cream);color:var(--text);min-heigh
         <label><span class="ico">♟️</span> Trình độ hiện tại của bé <span class="req">*</span></label>
         <select id="trinhDo" required>
           <option value="">— Chọn trình độ —</option>
-          <option>Chưa biết chơi</option>
-          <option>Mới biết mặt quân và nước đi</option>
-          <option>Đã biết chơi</option>
-          <option>Đã đi thi đấu</option>
+          <option>Con chưa biết gì về cờ vua</option>
+          <option>Con mới biết mặt quân và nước đi</option>
+          <option>Con đã biết chơi nhưng chưa bài bản và còn ẩu lắm</option>
+          <option>Con đã đi thi đấu nhưng chưa từng đạt giải</option>
+          <option>Con đã đạt giải cấp xã/phường</option>
+          <option>Con đã đạt giải cấp Thành phố/Tỉnh</option>
+          <option>Cần tư vấn, kiểm tra trình độ</option>
         </select>
         <div class="error-msg" id="err-trinhDo">Vui lòng chọn trình độ</div>
       </div>
@@ -194,15 +197,14 @@ body{font-family:var(--font);background:var(--cream);color:var(--text);min-heigh
         <label><span class="ico">📚</span> Đăng ký chương trình học <span class="req">*</span></label>
         <select id="chuongTrinh" required>
           <option value="">— Chọn chương trình —</option>
-          <option>Nhập môn</option>
-          <option>Cơ bản A</option>
-          <option>Cơ bản B</option>
-          <option>Nâng cao A</option>
-          <option>Nâng cao B</option>
-          <option>Chuyên sâu A</option>
-          <option>Chuyên sâu B</option>
-          <option>Chuyên sâu +</option>
-          <option>Tài năng cờ vua</option>
+          <option>C1. Nhập môn</option>
+          <option>C2. Cơ bản A</option>
+          <option>C3. Cơ bản B</option>
+          <option>C4. Nâng cao A</option>
+          <option>C5. Nâng cao B</option>
+          <option>C6. Chuyên sâu A</option>
+          <option>C7. Chuyên sâu B</option>
+          <option>C8. Tài năng cờ vua</option>
         </select>
         <div class="error-msg" id="err-chuongTrinh">Vui lòng chọn chương trình học</div>
       </div>
@@ -218,7 +220,7 @@ body{font-family:var(--font);background:var(--cream);color:var(--text);min-heigh
         <label><span class="ico">🗓️</span> Thời lượng học mỗi tuần <span class="req">*</span></label>
         <div class="choice-row">
           <label class="choice-card"><input type="radio" name="thoiLuong" value="2 buổi/tuần"><div class="card-face"><span class="emoji">🕒</span><span class="txt">2 buổi/tuần</span></div></label>
-          <label class="choice-card"><input type="radio" name="thoiLuong" value="3 buổi/tuần"><div class="card-face"><span class="emoji">🕒🕒</span><span class="txt">3 buổi/tuần</span></div></label>
+          <label class="choice-card"><input type="radio" name="thoiLuong" value="3 buổi/tuần - Hè"><div class="card-face"><span class="emoji">🕒🕒</span><span class="txt">3 buổi/tuần</span></div></label>
         </div>
         <div class="error-msg" id="err-thoiLuong">Vui lòng chọn thời lượng</div>
       </div>
@@ -226,12 +228,21 @@ body{font-family:var(--font);background:var(--cream);color:var(--text);min-heigh
         <label><span class="ico">📅</span> Lịch học mong muốn <span class="req">*</span></label>
         <select id="lichHoc" required>
           <option value="">— Chọn lịch học —</option>
-          <option>T2, T6</option>
-          <option>T3, T5</option>
-          <option>T4, T7</option>
-          <option>T7, CN</option>
-          <option>T2, T4, T6</option>
-          <option>T3, T5, T7</option>
+          <option>A. T2, T6 17:30 - 19:00 chiều tối</option>
+          <option>B. T3, T5 17:30 - 19:00 chiều tối</option>
+          <option>C. T4, T7 17:30 - 19:00 chiều tối</option>
+          <option>D. T7, CN 07:30 - 09:00 chiều tối</option>
+          <option>E. T7, CN 09:30 - 11:00</option>
+          <option>1. T2, T4, T6 07:30 - 09:00 sáng</option>
+          <option>2. T2, T4, T6 09:30 - 11:00 sáng</option>
+          <option>3. T2, T4, T6 14:30 - 16:00 chiều</option>
+          <option>4. T2, T4, T6 17:30 - 19:00 chiều tối</option>
+          <option>5. T3, T5, T7 07:30 - 09:00 sáng</option>
+          <option>6. T3, T5, T7 09:30 - 11:00 sáng</option>
+          <option>7. T3, T5, T7 14:30 - 16:00 chiều</option>
+          <option>8. T3, T5, T7 17:30 - 19:00 chiều tối</option>
+          <option>9. T7, CN 14:30 - 16:00 chiều</option>
+          <option>10. T7, CN 17:30 - 19:00 chiều tối</option>
           <option>Cần tư vấn</option>
         </select>
         <div class="error-msg" id="err-lichHoc">Vui lòng chọn lịch học</div>
